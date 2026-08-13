@@ -77,7 +77,7 @@ export const simulatePrediction = (data: TransactionPayload): PredictionResponse
  * Falls back to client-side simulation if the backend is offline.
  */
 export const predictTransaction = async (data: TransactionPayload): Promise<PredictionResponse> => {
-  const url = 'https://credit-card-fraud-detection-t7oq.vercel.app/predict';
+  const url = 'https://credit-card-fraud-detection-s9jm.vercel.app.vercel.app/predict';
 
   try {
     const response = await fetch(url, {

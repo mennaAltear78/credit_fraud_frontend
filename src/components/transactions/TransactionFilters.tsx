@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search, SlidersHorizontal, RefreshCw } from 'lucide-react';
+import { Search,  RefreshCw } from 'lucide-react';
 
 interface FiltersState {
   search: string;

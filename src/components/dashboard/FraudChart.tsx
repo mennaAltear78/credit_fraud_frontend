@@ -1,5 +1,10 @@
 import React from 'react';
-import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip } from 'recharts';
+import {
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell,
+} from 'recharts';
 import Card from '../common/Card';
 
 interface FraudChartProps {
@@ -7,30 +12,60 @@ interface FraudChartProps {
   fraudCount: number;
 }
 
-export const FraudChart: React.FC<FraudChartProps> = ({ safeCount, fraudCount }) => {
+export const FraudChart: React.FC<FraudChartProps> = ({
+  safeCount,
+  fraudCount,
+}) => {
+  const total = safeCount + fraudCount;
+
+  const fraudRate =
+    total > 0
+      ? ((fraudCount / total) * 100).toFixed(1)
+      : '0.0';
+
+  const safeRate =
+    total > 0
+      ? ((safeCount / total) * 100).toFixed(1)
+      : '0.0';
+
   const data = [
-    { name: 'Safe Transactions', value: safeCount, color: '#10b981' }, // emerald
-    { name: 'Fraud Detected', value: fraudCount, color: '#f43f5e' },   // rose
+    {
+      name: 'Safe Transactions',
+      value: safeCount,
+      color: '#10b981',
+    },
+    {
+      name: 'Fraud Detected',
+      value: fraudCount,
+      color: '#f43f5e',
+    },
   ];
 
-  const total = safeCount + fraudCount;
-  const fraudRate = total > 0 ? ((fraudCount / total) * 100).toFixed(1) : '0.0';
-
   return (
-    <Card className="h-[320px] flex flex-col justify-between" glow="none">
+    <Card
+      className="h-[320px] flex flex-col justify-between"
+      glow="none"
+    >
+      {/* Header */}
       <div>
         <h4 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">
           Classification Share
         </h4>
+
         <p className="text-xs text-gray-500 mt-0.5">
           Proportion of legitimate vs. fraudulent transactions analyzed
         </p>
       </div>
 
+      {/* Chart */}
       <div className="relative flex-1 flex items-center justify-center">
-        {/* Center Text in Donut */}
-        <div className="absolute flex flex-col items-center justify-center pointer-events-none select-none">
-          <span className="text-2xl font-bold text-gray-150">{fraudRate}%</span>
+
+        {/* Center */}
+        <div className="absolute z-10 flex flex-col items-center justify-center pointer-events-none">
+          <span className="text-2xl font-bold text-gray-150">
+            {fraudRate}%
+          </span>
+
           <span className="text-[10px] text-gray-500 font-semibold uppercase tracking-widest">
             Fraud Rate
           </span>
@@ -48,39 +83,68 @@ export const FraudChart: React.FC<FraudChartProps> = ({ safeCount, fraudCount })
               dataKey="value"
             >
               {data.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={entry.color} stroke="#111827" strokeWidth={1} />
+                <Cell
+                  key={`cell-${index}`}
+                  fill={entry.color}
+                  stroke="#111827"
+                  strokeWidth={1}
+                />
               ))}
             </Pie>
-            <Tooltip
-              contentStyle={{
-                backgroundColor: '#1f2937',
-                border: '1px solid #374151',
-                borderRadius: '8px',
-                color: '#f3f4f6',
-                fontFamily: 'sans-serif',
-                fontSize: '12px',
-              }}
-              formatter={(value: number) => [value, 'Count']}
-            />
           </PieChart>
         </ResponsiveContainer>
       </div>
 
       {/* Legend */}
       <div className="flex items-center justify-around text-xs mt-2">
-        {data.map((item, idx) => (
-          <div key={idx} className="flex items-center gap-2">
-            <span
-              className="w-3 h-3 rounded-full"
-              style={{ backgroundColor: item.color }}
-            />
-            <span className="text-gray-400 font-medium">
-              {item.name}: <span className="text-gray-200 font-bold">{item.value}</span>
+
+        {/* Safe */}
+        <div className="flex items-center gap-2">
+          <span
+            className="w-3 h-3 rounded-full"
+            style={{
+              backgroundColor: '#10b981',
+            }}
+          />
+
+          <span className="text-gray-400 font-medium">
+            Safe:{' '}
+
+            <span className="text-gray-200 font-bold">
+              {safeCount.toLocaleString()}
             </span>
-          </div>
-        ))}
+
+            <span className="text-gray-500 ml-1">
+              ({safeRate}%)
+            </span>
+          </span>
+        </div>
+
+        {/* Fraud */}
+        <div className="flex items-center gap-2">
+          <span
+            className="w-3 h-3 rounded-full"
+            style={{
+              backgroundColor: '#f43f5e',
+            }}
+          />
+
+          <span className="text-gray-400 font-medium">
+            Fraud:{' '}
+
+            <span className="text-gray-200 font-bold">
+              {fraudCount.toLocaleString()}
+            </span>
+
+            <span className="text-gray-500 ml-1">
+              ({fraudRate}%)
+            </span>
+          </span>
+        </div>
+
       </div>
     </Card>
   );
 };
+
 export default FraudChart;

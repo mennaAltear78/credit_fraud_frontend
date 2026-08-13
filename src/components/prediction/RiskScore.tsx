@@ -27,11 +27,11 @@ export const RiskScore: React.FC<RiskScoreProps> = ({
       ? 'stroke-amber-500 shadow-amber-500/50'
       : 'stroke-emerald-500 shadow-emerald-500/50';
 
-  const glowColor = isHighRisk 
-    ? 'text-rose-500/10' 
-    : score >= threshold / 2
-      ? 'text-amber-500/10'
-      : 'text-emerald-500/10';
+  // const glowColor = isHighRisk 
+  //   ? 'text-rose-500/10' 
+  //   : score >= threshold / 2
+  //     ? 'text-amber-500/10'
+  //     : 'text-emerald-500/10';
 
   return (
     <div className="relative flex flex-col items-center justify-center select-none" style={{ width: size, height: size }}>

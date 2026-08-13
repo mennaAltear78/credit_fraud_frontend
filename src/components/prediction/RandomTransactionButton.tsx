@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldCheck, ShieldAlert, RefreshCw } from 'lucide-react';
+import { ShieldAlert } from 'lucide-react';
 
 interface RandomTransactionButtonProps {
   onGenerate: (type: 'safe' | 'fraud' | 'random') => void;

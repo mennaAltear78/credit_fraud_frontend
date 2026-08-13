@@ -9,7 +9,7 @@ export const Navbar: React.FC = () => {
   // Determine if the last prediction was simulated (indicating API fallback)
   const lastSimulated = transactions.length > 0 ? transactions[0].result.isSimulated : false;
 
-  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+  const [theme] = useState<'light' | 'dark'>(() => {
     if (typeof window !== 'undefined') {
       const savedTheme = localStorage.getItem('theme');
       if (savedTheme === 'light' || savedTheme === 'dark') {

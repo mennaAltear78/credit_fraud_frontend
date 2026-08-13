@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Eye, Trash2, ShieldCheck, ShieldAlert } from 'lucide-react';
+import { Eye, Trash2 } from 'lucide-react';
 import type { TransactionHistoryItem } from '../../store/fraudStore';
 import { formatAmount, formatScore, formatDate } from '../../utils/formatters';
 import Badge from '../common/Badge';

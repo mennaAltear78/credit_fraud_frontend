@@ -49,7 +49,7 @@ export const AdvancedInputs: React.FC<AdvancedInputsProps> = ({
             {features.map((feature) => (
               <div key={feature} className="space-y-1">
                 <label
-                  htmlFor={feature}
+                 // htmlFor={feature}
                   className="block text-[11px] font-bold text-gray-400 tracking-wider"
                 >
                   {feature}
@@ -57,8 +57,8 @@ export const AdvancedInputs: React.FC<AdvancedInputsProps> = ({
                 <input
                   type="number"
                   step="0.0001"
-                  id={feature}
-                  name={feature}
+                 // id={feature}
+                 // name={feature}
                   value={values[feature] || 0}
                   onChange={(e) => onChange(feature, parseFloat(e.target.value) || 0)}
                   className="w-full px-2.5 py-1.5 rounded-lg bg-gray-950 border border-gray-800 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/20 text-gray-200 text-xs font-mono focus:outline-none transition-all duration-300"

@@ -48,7 +48,7 @@ export const FraudOverTime: React.FC<FraudOverTimeProps> = ({ transactions }) =>
                   color: '#f3f4f6',
                   fontSize: '11px',
                 }}
-                formatter={(value: number) => [`${value}%`, 'Risk Score']}
+              formatter={(value) => [`${Number(value).toFixed(1)}%`, "Risk Score"]}
               />
               {/* Highlight threshold line */}
               <ReferenceLine y={21} stroke="#ef4444" strokeDasharray="3 3" label={{ value: 'Threshold (21%)', fill: '#f43f5e', fontSize: 9, position: 'top' }} />
